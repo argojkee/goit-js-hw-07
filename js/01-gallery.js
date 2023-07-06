@@ -33,11 +33,13 @@ function onPictureClick(e) {
   );
   instance.show();
 
-  galleryListEl.addEventListener("keydown", (e) => {
+  function onKeyDown(e) {
     if (e.code !== "Escape") {
       return;
     }
-
     instance.close();
-  });
+    galleryListEl.removeEventListener("keydown", onKeyDown);
+  }
+
+  galleryListEl.addEventListener("keydown", onKeyDown);
 }
