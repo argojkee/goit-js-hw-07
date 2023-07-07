@@ -29,7 +29,15 @@ function onPictureClick(e) {
   }
 
   const instance = basicLightbox.create(
-    `<img src="${e.target.dataset.source}" width="800" height="600">`
+    `<img src="${e.target.dataset.source}" width="800" height="600">`,
+    {
+      onShow() {
+        galleryListEl.addEventListener("keydown", onKeyDown);
+      },
+      onClose() {
+        galleryListEl.removeEventListener("keydown", onKeyDown);
+      },
+    }
   );
   instance.show();
 
@@ -37,9 +45,7 @@ function onPictureClick(e) {
     if (e.code !== "Escape") {
       return;
     }
-    instance.close();
-    galleryListEl.removeEventListener("keydown", onKeyDown);
-  }
 
-  galleryListEl.addEventListener("keydown", onKeyDown);
+    instance.close();
+  }
 }

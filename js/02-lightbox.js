@@ -15,16 +15,6 @@ const markup = galleryItems
 
 galleryListEl.insertAdjacentHTML("beforeend", markup);
 
-galleryListEl.addEventListener("click", onPictureClick);
-
-function onPictureClick(e) {
-  event.preventDefault();
-
-  if (e.target !== "IMG") {
-    return;
-  }
-}
-
 const lightbox = new SimpleLightbox(".gallery a", {
   /* options */
   captionsData: "alt",
